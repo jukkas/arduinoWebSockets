@@ -146,6 +146,9 @@ void WebSocketsClient::loop(void) {
                 _client.tcp = NULL;
             }
             _client.ssl = new WiFiClientSecure();
+#ifdef wificlientbearssl_h
+            _client.ssl->setInsecure();
+#endif
             _client.tcp = _client.ssl;
         } else {
             DEBUG_WEBSOCKETS("[WS-Client] connect ws...\n");
